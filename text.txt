@@ -1,0 +1,31 @@
+Deutsch - Job Experience:
+Seit meinem 12. Lebensjahr entwickle ich Videospiele und habe mich dadurch zum Beruf des Softwareentwicklers entwickelt. Meine Ausbildung bei Infront habe ich am 01.09.2021 begonnen und werde voraussichtlich am 31.08.2024 erfolgreich abschließen. In dieser Zeit konnte ich umfassendes Wissen über die Microservice-Architektur und die zugehörige Cloud-Infrastruktur erlangen. Insbesondere habe ich mein Java-Wissen über die Jahre sowohl im privaten als auch im beruflichen Kontext erheblich erweitert. Der Umgang mit Spring-Boot-Anwendungen gehört ebenfalls zu meinem täglichen Arbeitsalltag, wodurch ich umfangreiche Erfahrungen gesammelt habe.
+
+Darüber hinaus sind mir durch private und Firmenprojekte Frontend-Frameworks wie Angular oder React Native bekannt. Im Jahr 2022 habe ich im Rahmen meiner Ausbildung einen einwöchigen Kurs in Angular für die Frontend-Entwicklung besucht und erfolgreich abgeschlossen.
+
+In der Berufsschule sowie im privaten Gebrauch konnte ich umfangreiche Erfahrungen mit Mikroprozessoren und deren Programmierung sammeln. Vor meiner Ausbildung habe ich im Jahr 2021 meinen Realschulabschluss in Mathematik und Physik erfolgreich abgeschlossen.
+
+English - Job Experience:
+
+
+I have been developing video games since I was 12 years old, leading me to pursue a career as a software developer. I commenced my training at Infront on September 1, 2021, and I am expected to complete it on August 31, 2024. During this time, I have acquired extensive knowledge of microservices architecture and the associated cloud infrastructure. Over the years, I have significantly expanded my Java expertise through both personal and professional experiences. I handle Spring Boot applications on a daily basis, gaining substantial practical experience in this area.
+
+Furthermore, I am familiar with frontend frameworks such as Angular and React Native through private and company projects. In 2022, as part of my training, I successfully completed a one-week course in Angular for frontend development.
+
+In vocational school and personal use, I have accumulated significant experience with microprocessors and their programming. Prior to my training, I successfully completed my secondary school education in Mathematics and Physics in 2021.
+
+
+
+
+Engish - About-Me
+
+I'm Ferdi, 18 years old, currently residing in the beautiful city of Würzburg. In my free time, I love playing handball and engaging in various other sports.
+
+Driven by a passion for software development, I am actively involved in numerous personal projects, which has granted me a solid understanding of the field. As a programmer, I approach tasks with structured and solution-oriented thinking, while also placing a strong emphasis on teamwork.
+
+
+Deutsch  - About-Me
+
+Ich bin Ferdi, 18 Jahre alt und derzeit in dem wunderschönen Würzburg ansässig. In meiner Freizeit spiele ich leidenschaftlich gerne Handball und betreibe auch andere Sportarten. Abends findet man mich hin und wieder als DJ.
+
+Mit großer Hingabe beschäftige ich mich mit der Softwareentwicklung und arbeite bereits an zahlreichen privaten Projekten, wodurch ich ein fundiertes Wissen erworben habe. Als Programmierer zeichne ich mich durch strukturiertes und lösungsorientiertes Denken aus, wobei die Teamarbeit für mich ebenso im Fokus steht.
