@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  html-to-pdf:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./output:/app/output
