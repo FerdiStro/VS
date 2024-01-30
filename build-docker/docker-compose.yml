@@ -7,3 +7,16 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./output:/app/output
+    depends_on:
+      - server
+    environment:
+      - ASSETS_SERVER_URL=http://server:8000/assets/
+    stop_signal: SIGINT
+
+
+  server:
+    build:
+      context: .
+      dockerfile: ServerDockerfile
+    ports:
+      - "8000:8000"
