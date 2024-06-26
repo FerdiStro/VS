@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            transform: scale(2.6);
+            transform-origin: top left;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        #footer{
+            position: fixed;
+            height: 60px;
+            top: 840px;
+            display: flex;
+        }
+
+        #header {
+            display: flex;
+            align-items: center;
+            margin: 0;
+
+        }
+
+        .contact-data {
+            width: 150px;
+            position: relative;
+            font-size: 10px;
+            top: 25px;
+            margin-left: 12px;
+
+        }
+
+        #name {
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .up {
+            position: relative;
+            width: 0;
+            height: 0;
+            border-style: inset;
+            border-width: 0 200px 100px 200px;
+            border-color: transparent transparent #007bff transparent;
+            transform: rotate(180deg);
+            margin-left: -62px;
+        }
+
+        .up img {
+            transform: rotate(180deg);
+            width: 70px;
+            height: 70px;
+            border-radius: 130px;
+            position: relative;
+            top: 18px;
+            left: -35px;
+        }
+
+        .down {
+            width: 0;
+            height: 0;
+            border-style: inset;
+            border-width: 0 100px 60px 100px;
+            border-color: transparent transparent #007bff transparent;
+            float: left;
+            position: relative;
+            margin-left: 38px;
+        }
+
+        .down p {
+            position: relative;
+            top: 20px;
+            left: -49px;
+            font-size: 9px;
+        }
+        .box-big{
+            margin-left: 20px;
+            width: 380px;
+        }
+        .box-small{
+            margin-left: 20px;
+            width: 170px;
+        }
+        .box-header{
+
+            font-size: 15px;
+            border-bottom: 1px solid grey;
+        }
+        .box-content{
+            position: relative;
+            top: -10px;
+            font-size: 11px;
+        }
+
+        .rounded-circle-fill {
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            background-color: #007bff;
+            border-radius: 50%;
+            margin-left: 1px;
+        }
+
+        .rounded-circle-non-fill {
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            background-color: rgba(160, 198, 241, 0.55);;
+            border-radius: 50%;
+            margin-left: 1px;
+        }
+        .point{
+            width: 105px;
+            display: inline-block;
+        }
+        .value{
+            display: inline;
+        }
+
+
+    </style>
+    <title>Your Title</title>
+</head>
+<body>
+
+<div style="width: 600px; height: 850px;  ">
+    <div id="header">
+        <div class="contact-data">
+            +49 176 83220561
+            ferdistr08@gmail.com
+        </div>
+        <div class="up">
+            <img src="http://server:8000/assets/Profil-Bild.png" alt="Profil-Bild">
+        </div>
+        <div class="arrow-down">
+            <div id="picture">
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="body">
+        <div id="name">
+            <h3>
+                Ferdinand <br/>
+                Strobel
+            </h3>
+        </div>
+
+        <div style="display: flex">
+            <div class="box-big">
+                <p class="box-header">
+                    Job Experience
+                </p>
+                <p class="box-content">
+                    I have been developing video games since I was 12 years old, leading me to pursue a career as a software developer. <br>
+                    I started my apprenticeship at Infront-fiance on September 1st 2021 and will probably finish it by passing the final exam at the beginning of June 2024. <br>
+                    <br>
+                    During this time, I have acquired extensive knowledge of microservices architecture and the associated cloud infrastructure. <br>
+                    Over the years, I have significantly expanded my Java expertise through both personal and professional experiences. I handle Spring Boot applications on a daily basis, gaining substantial practical experience in this area. <br>
+                    <br>
+                    Furthermore, I am familiar with frontend frameworks such as Angular and React Native through private and company projects. In 2022, as part of my training, I successfully completed a one-week course in Angular for frontend development. <br>
+                    <br>
+                    In vocational school and personal use, I have accumulated significant experience with microprocessors and their programming. Prior to my training, I successfully completed my secondary school education in Mathematics and Physics in 2021. <br>
+                </p>
+            </div>
+
+            <div class="box-small">
+                <p class="box-header">
+                    Skills
+                </p>
+
+                <div class="box-content">
+                    <div>
+                        <div class="point">
+                            -Java
+                        </div>
+                        <div class="value">
+                            <div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="point">
+                            -Spring
+                        </div>
+                        <div class="value">
+                            <div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="point">
+                            -Html/Css
+                        </div>
+                        <div class="value">
+                            <div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="point">
+                            -Linux
+                        </div>
+                        <div class="value">
+                            <div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-non-fill"> </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="point">
+                            -Docker
+                        </div>
+                        <div class="value">
+                            <div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-non-fill"> </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="point">
+                            -Gradle
+                        </div>
+                        <div class="value">
+                            <div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-non-fill"> </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="point">
+                            -Angular
+                        </div>
+                        <div class="value">
+                            <div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-non-fill"> </div><div class="rounded-circle-non-fill"> </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="point">
+                            -Java-Script
+                        </div>
+                        <div class="value">
+                            <div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-non-fill"> </div><div class="rounded-circle-non-fill"> </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="point">
+                            -Type-Script
+                        </div>
+                        <div class="value">
+                            <div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-non-fill"> </div><div class="rounded-circle-non-fill"> </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="point">
+                            -React-Native
+                        </div>
+                        <div class="value">
+                            <div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-non-fill"> </div><div class="rounded-circle-non-fill"> </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="point">
+                            -Kubernetes
+                        </div>
+                        <div class="value">
+                            <div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-non-fill"> </div><div class="rounded-circle-non-fill"> </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="point">
+                            -Python/Rust/C++
+                        </div>
+                        <div class="value">
+                            <div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-non-fill"> </div><div class="rounded-circle-non-fill"> </div><div class="rounded-circle-non-fill"> </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+        <div style="display: flex">
+            <div class="box-small">
+                <p class="box-header">
+                    Speaking-Languages
+                </p>
+
+                <div class="box-content">
+                    <div>
+                        <div class="point">
+                            -German
+                        </div>
+                        <div class="value">
+                            <div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="point">
+                            -English
+                        </div>
+                        <div class="value">
+                            <div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-non-fill"> </div><div class="rounded-circle-non-fill"> </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="point">
+                            -Spanish
+                        </div>
+                        <div class="value">
+                            <div class="rounded-circle-fill"> </div><div class="rounded-circle-non-fill"> </div><div class="rounded-circle-non-fill"> </div><div class="rounded-circle-non-fill"> </div><div class="rounded-circle-non-fill"> </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="box-big">
+                <p class="box-header">
+                    About Me
+                </p>
+                <p class="box-content">
+                    I'm Ferdi, 18 years old, currently residing in the beautiful city of Würzburg. <br>
+                    In my free time, I love playing handball and engaging in various other sports.<br><br>
+
+                    Driven by a passion for software development, I am actively involved in numerous personal projects, which has granted me a solid understanding of the field. <br>
+                    As a programmer, I approach tasks with structured and solution-oriented thinking, while also placing a strong emphasis on teamwork.
+                </p>
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+    <div id="footer">
+        <div class="contact-data">
+            Ferdinand Strobel
+        </div>
+        <div class="down">
+            <p>ferdistr08@gmail.com</p>
+        </div>
+        <div class="contact-data" style="left: 35px" >
+            github.com/FerdiStro/VC
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
