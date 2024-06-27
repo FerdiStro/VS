@@ -12,5 +12,8 @@ colored = "2.1.0"
 time = "0.3.36"
 inquire = "0.7.5"
 dialoguer = "0.11.0"
+ramhorns = "1.0.0"
+same-file = "1.0.6"
+
 
 
