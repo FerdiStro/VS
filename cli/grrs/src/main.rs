@@ -1,13 +1,21 @@
+mod generator;
+
 use std::thread::sleep;
 use std::{thread, time};
+use std::io;
+
+use generator::generator as gen;
+
+
+
+
 
 use clap::Parser;
 use colored::Colorize;
 use dialoguer::{Input, Select};
 use dialoguer::theme::ColorfulTheme;
-use indicatif::ProgressBar;
 use inquire::MultiSelect;
-
+use crate::generator::generator::CV;
 
 #[derive(Parser)]
 struct Cli {
@@ -16,6 +24,7 @@ struct Cli {
 }
 
 fn main() {
+
 
     println!(
         "{} \n  {} \n  {}\n  \n",
@@ -38,46 +47,104 @@ fn main() {
         .unwrap();
 
 
-    let mut skill_choice : Vec<&str>    = vec![];
-    let mut skill_select_text : &str    = "";
+    let mut skill_choice : Vec<&str>            = vec![];
+    let mut skill_select_text : &str            = "";
+    let mut skill_list_text: &str               = "";
+    let mut skill_point_text: &str              = "";
 
-    let mut skill_list_text: &str       = "";
-    let mut skill_point_text: &str      = "";
+    let mut name_first_ask_text : &str          = "";
+    let mut name_second_ask_text : &str         = "";
 
+    let mut contact_email_ask_text: &str        = "";
+    let mut contact_phone_aks_text: &str        = "";
 
 
     let true_list  : Vec<&str>  = vec!["yes", "Ja"];
     let false_list : Vec<&str>  =  vec!["no", "Nein"];
 
 
-    if(language_choice[language_select].eq("Deutsch")){
+    if language_choice[language_select].eq("Deutsch"){
+
         skill_choice            = vec!["Ja", "Nein"];
         skill_select_text       = "Willst du deine Programmierskills im Lebenslauf ";
         skill_list_text         = "Waehle deine Skills:";
         skill_point_text        = "Weise Punkte von 0 bis 5 zu für:";
 
+        name_first_ask_text     = "Gib deinen Vornamen ein :";
+        name_second_ask_text    = "Gib deinen Nachnamen ein:";
+
+        contact_email_ask_text  = "Gib deine Email-Adresse ein:";
+        contact_phone_aks_text  = "Gib deine Telefonnummer ein:";
     }
-    if(language_choice[language_select].eq("English")){
+    if language_choice[language_select].eq("English"){
+
         skill_choice            = vec!["yes", "no"];
         skill_select_text       = "Do you want your Programming Skills in your CV?";
-        skill_list_text         = "Choice your skills:";
+        skill_list_text         = "Choice your SKILLS:";
         skill_point_text        = "Choice point from 0 to 5:";
+
+        name_first_ask_text     = "Enter your firstname: ";
+        name_second_ask_text    = "Enter your lastname :";
+
+        contact_email_ask_text  = "Enter your E-Mail      :";
+        contact_phone_aks_text  = "Enter your Phone-nummer:";
+
     }
+    println!("\n");
 
 
+    /*
+        Name
+     */
+    println!("{}",
+             name_first_ask_text.bold()
+    );
+
+    let mut first_name = String::new();
+    io::stdin()
+        .read_line(&mut first_name)
+        .expect("Failed to read line");
+
+    println!("{}",
+             name_second_ask_text.bold()
+    );
+
+    let mut second_name = String::new();
+    io::stdin()
+        .read_line(&mut second_name)
+        .expect("Failed to read line");
 
 
+    /*
+        Contact information
+     */
 
-    println!("\n\n");
+    println!("{}",
+             contact_email_ask_text.bold()
+    );
 
 
+    let mut email_address = String::new();
+    io::stdin()
+        .read_line(&mut email_address)
+        .expect("Failed to read line");
+
+    println!("{}",
+             contact_phone_aks_text.bold()
+    );
 
 
+    let mut phone_nummer = String::new();
+    io::stdin()
+        .read_line(&mut phone_nummer)
+        .expect("Failed to read line");
 
 
     /*
         Skills
     */
+
+    println!("\n");
 
     let skill_select =  Select::with_theme(&ColorfulTheme::default())
         .with_prompt(skill_select_text)
@@ -85,11 +152,12 @@ fn main() {
         .default(0)
         .interact()
         .unwrap();
+
     println!("\n\n");
 
 
-    if(true_false_convert(skill_choice[skill_select], true_list, false_list)){
-        let  mut skills : Vec<&str> = vec![
+    if true_false_convert(skill_choice[skill_select], true_list, false_list){
+        let skills: Vec<&str> = vec![
             "Java",
             "C",
             "C++",
@@ -117,7 +185,8 @@ fn main() {
             }
             Err(err) => println!("Error: {}", err),
         }
-        println!("\n\n");
+
+
 
 
         for (i, selected_skills) in selected_skills.iter().enumerate() {
@@ -137,14 +206,30 @@ fn main() {
 
             rating[i] = point;
         }
+
+
+
+
+
+
+
+
+
     }
 
+    let cv_data: CV = CV {
+        first_name:         &*first_name.replace("\n", ""),
+        last_name:          &*second_name.replace("\n", ""),
+        phone_number :      &*phone_nummer.replace("\n", ""),
+        email_address:      &*email_address.replace("\n", ""),
+    };
 
+    gen::generate(cv_data);
 
 
 
     // println!("Punkteverteilung:");
-    // for (option, point) in skills.iter().zip(skills.iter()) {
+    // for (option, point) in SKILLS.iter().zip(SKILLS.iter()) {
     //     println!("{}: {} Punkte", option, point);
     // }
 
@@ -174,14 +259,19 @@ fn main() {
     //     pb.inc(1);
     // }
     // pb.finish_with_message("done");
+
+
+    // let number = if condition { 5 } else { 6 };
+
 }
 
 fn true_false_convert( message: &str , true_list : Vec<&str> , false_list : Vec<&str>, ) -> bool {
-    if(true_list.contains(&message)){
+    if true_list.contains(&message){
         return true
     }
-    if(false_list.contains(&message)){
+    if false_list.contains(&message){
         return false
     }
-    return false;
+    false
 }
+
