@@ -15,7 +15,7 @@ use colored::Colorize;
 use dialoguer::{Input, Select};
 use dialoguer::theme::ColorfulTheme;
 use inquire::MultiSelect;
-use crate::generator::generator::CV;
+use crate::generator::generator::{CV, Skill};
 
 #[derive(Parser)]
 struct Cli {
@@ -153,6 +153,9 @@ fn main() {
         .interact()
         .unwrap();
 
+    let mut selected_skills_ob:Vec<Skill> = vec![];
+
+
     println!("\n\n");
 
 
@@ -180,6 +183,13 @@ fn main() {
                 } else {
                     for selection in selections {
                         selected_skills.push(selection);
+
+                        let skill  : Skill =  Skill{
+                            skill_name: selection,
+                            rating: "".to_string(),
+                        };
+
+                        selected_skills_ob.push(skill)
                     }
                 }
             }
@@ -189,8 +199,11 @@ fn main() {
 
 
 
-        for (i, selected_skills) in selected_skills.iter().enumerate() {
-            println!("{} {}", &skill_point_text , selected_skills);
+
+
+
+        for i in 0..selected_skills_ob.len() {
+            println!("{} {}", &skill_point_text, selected_skills_ob[i].skill_name);
 
             let point: i32 = Input::with_theme(&ColorfulTheme::default())
                 .with_prompt("")
@@ -204,11 +217,10 @@ fn main() {
                 .interact()
                 .unwrap();
 
-            rating[i] = point;
+            if let Some(skill) = selected_skills_ob.get_mut(i) {
+                skill.rating = format_rating(point); ;
+            }
         }
-
-
-
 
 
 
@@ -217,11 +229,15 @@ fn main() {
 
     }
 
+
+
+
     let cv_data: CV = CV {
         first_name:         &*first_name.replace("\n", ""),
         last_name:          &*second_name.replace("\n", ""),
         phone_number :      &*phone_nummer.replace("\n", ""),
         email_address:      &*email_address.replace("\n", ""),
+        skills:             selected_skills_ob,
     };
 
     gen::generate(cv_data);
@@ -264,6 +280,12 @@ fn main() {
     // let number = if condition { 5 } else { 6 };
 
 }
+fn format_rating(rating: i32) -> String {
+    let filled = "<div class=\"rounded-circle-fill\"> </div>".repeat(rating as usize);
+    let empty = "<div class=\"rounded-circle-non-fill\"> </div>".repeat(5 - rating as usize);
+    format!("{}{}", filled, empty)
+}
+
 
 fn true_false_convert( message: &str , true_list : Vec<&str> , false_list : Vec<&str>, ) -> bool {
     if true_list.contains(&message){
