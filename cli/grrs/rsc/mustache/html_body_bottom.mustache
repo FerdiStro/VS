@@ -3,35 +3,18 @@
                 <p class="box-header">
                     Speaking-Languages
                 </p>
-
                 <div class="box-content">
-                    <div>
-                        <div class="point">
-                            -German
+                    {{#languages}}
+                        <div>
+                            <div class="point">
+                                -{{skill_name}}
+                            </div>
+                            <div class="value">
+                                {{&rating}}
+                            </div>
                         </div>
-                        <div class="value">
-                            <div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="point">
-                            -English
-                        </div>
-                        <div class="value">
-                            <div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-fill"> </div><div class="rounded-circle-non-fill"> </div><div class="rounded-circle-non-fill"> </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="point">
-                            -Spanish
-                        </div>
-                        <div class="value">
-                            <div class="rounded-circle-fill"> </div><div class="rounded-circle-non-fill"> </div><div class="rounded-circle-non-fill"> </div><div class="rounded-circle-non-fill"> </div><div class="rounded-circle-non-fill"> </div>
-                        </div>
-                    </div>
+                    {{/languages}}
                 </div>
-
-
             </div>
 
 

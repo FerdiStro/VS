@@ -20,6 +20,7 @@ pub struct Skill<'a>{
 }
 
 
+
 #[derive(Content)]
 pub struct CV<'a> {
     //Name
@@ -28,8 +29,13 @@ pub struct CV<'a> {
     //Contact
     pub(crate) phone_number: &'a str,
     pub(crate) email_address: &'a str,
-
+    //programing skills
     pub(crate) skills: Vec<Skill<'a>>,
+    //languages
+    pub(crate) languages: Vec<Skill<'a>>,
+
+    //color
+    pub(crate) color: &'a str,
 
 }
 pub fn generate(cv: CV) {
