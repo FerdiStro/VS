@@ -1,8 +1,7 @@
 mod generator;
+mod merger;
 
 use std::io;
-use std::thread::sleep;
-use std::{thread, time};
 
 use generator::generator as gen;
 
@@ -20,6 +19,7 @@ struct Cli {
 }
 
 fn main() {
+
     println!(
         "{} \n  {} \n  {}\n  \n",
         "Welcome to the CV generator".bold(),
@@ -41,11 +41,9 @@ fn main() {
 
     let mut skill_choice: Vec<&str> = vec![];
 
-
     let mut skill_select_text: &str = "";
     let mut skill_list_text: &str = "";
     let mut skill_point_text: &str = "";
-
 
     let mut language_select_text: &str = "";
     let mut language_list_text: &str = "";
@@ -58,21 +56,18 @@ fn main() {
     let mut contact_email_ask_text: &str = "";
     let mut contact_phone_aks_text: &str = "";
 
-    let mut true_list: Vec<&str> = vec!["yes", "Ja"];
-    let mut false_list: Vec<&str> = vec!["no", "Nein"];
-
+    let true_list: Vec<&str> = vec!["yes", "Ja"];
+    let false_list: Vec<&str> = vec!["no", "Nein"];
 
     let mut selected_color: &str = "";
     let mut color_select_text: &str = "";
-    let mut colors_hex_codes:Vec<&str> = vec!["#007bff", "#FFEB3B", "#E53935"];
-    let mut colors:Vec<&str> = vec![];
+    let mut colors_hex_codes: Vec<&str> = vec!["#007bff", "#FFEB3B", "#E53935"];
+    let mut colors: Vec<&str> = vec![];
 
-
-
+    let mut ask_for_time_line_text: &str = "";
 
     if language_choice[language_select].eq("Deutsch") {
         skill_choice = vec!["Ja", "Nein"];
-
 
         skill_select_text = "Willst du deine Programmierskills im Lebenslauf ";
         skill_list_text = "Waehle deine Skills:";
@@ -83,7 +78,6 @@ fn main() {
         language_point_text = "Weise Punkte von 0 bis 5 zu für:";
         language_lists = vec!["Deutsch", "English", "Spanisch", "Italienisch"];
 
-
         name_first_ask_text = "Gib deinen Vornamen ein :";
         name_second_ask_text = "Gib deinen Nachnamen ein:";
 
@@ -93,6 +87,8 @@ fn main() {
         selected_color = "Blau";
         color_select_text = "Waehle die Farbe deines Lebenslaufes";
         colors = vec!["Blau", "Gelb", "Rot"];
+
+        ask_for_time_line_text = "Willst du eine Timeline in deinem Lebenslauf?";
     }
     if language_choice[language_select].eq("English") {
         skill_choice = vec!["yes", "no"];
@@ -106,7 +102,6 @@ fn main() {
         language_point_text = "Choice point from 0 to 5:";
         language_lists = vec!["English", "German", "Spanish", "Italian"];
 
-
         name_first_ask_text = "Enter your firstname: ";
         name_second_ask_text = "Enter your lastname :";
 
@@ -116,19 +111,17 @@ fn main() {
         selected_color = "Blue";
         color_select_text = "Choice the color of your CV";
 
-        colors = vec!["Blue", "Yellow", "Red"]
+        colors = vec!["Blue", "Yellow", "Red"];
 
+        ask_for_time_line_text = "Do you want a Timeline in your CV?";
     }
     println!("\n");
 
-
-
     /*
-       Colors
-     */
+      Colors
+    */
 
     println!("\n");
-
 
     let color_select = Select::with_theme(&ColorfulTheme::default())
         .with_prompt(color_select_text)
@@ -137,10 +130,8 @@ fn main() {
         .interact()
         .unwrap();
 
-    let selected_color : &str   = colors.get(color_select).unwrap();
+    let selected_color: &str = colors.get(color_select).unwrap();
     print!("{}", selected_color);
-
-
 
     /*
        Name
@@ -193,7 +184,6 @@ fn main() {
     println!("\n\n");
 
     if true_false_convert(skill_choice[language_select], &true_list, &false_list) {
-
         let mut rating = vec![0; language_lists.len()];
 
         let selection = MultiSelect::new(skill_list_text, language_lists.clone())
@@ -240,19 +230,11 @@ fn main() {
                 skill.rating = format_rating(point);
             }
         }
-
     }
 
-
-
-
-
-
-
-
-        /*
-            Skills
-        */
+    /*
+        Skills
+    */
 
     println!("\n");
 
@@ -320,11 +302,25 @@ fn main() {
     }
     println!("{}", selected_languages.len());
 
+    /*
+       Timeline Generate
+    */
 
-
-    let color_index: usize  =  colors.iter()
-        .position(|x| *x == selected_color)
+    let language_select = Select::with_theme(&ColorfulTheme::default())
+        .with_prompt(ask_for_time_line_text)
+        .items(&skill_choice)
+        .default(0)
+        .interact()
         .unwrap();
+
+    let time_line = true_false_convert(skill_choice[language_select], &true_list, &false_list);
+
+    if time_line {}
+
+    /*
+        Generate
+    */
+    let color_index: usize = colors.iter().position(|x| *x == selected_color).unwrap();
 
     let selected_color_hex = colors_hex_codes.get(color_index).unwrap();
 
@@ -335,10 +331,10 @@ fn main() {
         email_address: &*email_address.replace("\n", ""),
         skills: selected_skills_ob,
         languages: selected_languages,
-        color:selected_color_hex
+        color: selected_color_hex,
     };
 
-    gen::generate(cv_data);
+    gen::generate(cv_data, time_line);
 
     // println!("Punkteverteilung:");
     // for (option, point) in SKILLS.iter().zip(SKILLS.iter()) {
@@ -372,7 +368,6 @@ fn format_rating(rating: i32) -> String {
     let empty = "<div class=\"rounded-circle-non-fill\"> </div>".repeat(5 - rating as usize);
     format!("{}{}", filled, empty)
 }
-
 
 fn true_false_convert(message: &str, true_list: &Vec<&str>, false_list: &Vec<&str>) -> bool {
     if true_list.contains(&message) {

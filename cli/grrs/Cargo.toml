@@ -15,5 +15,4 @@ dialoguer = "0.11.0"
 ramhorns = "1.0.0"
 same-file = "1.0.6"
 
-
-
+lopdf = "0.36.0"
