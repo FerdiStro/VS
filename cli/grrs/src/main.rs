@@ -1,11 +1,14 @@
 mod generator;
 mod merger;
+mod structures;
 
+use crate::structures::time_point::TimePoint;
 use std::io;
 
 use generator::generator as gen;
 
-use crate::generator::generator::{Skill, CV};
+use crate::structures::cv::CV;
+use crate::structures::skill::Skill;
 use clap::Parser;
 use colored::Colorize;
 use dialoguer::theme::ColorfulTheme;
@@ -19,7 +22,6 @@ struct Cli {
 }
 
 fn main() {
-
     println!(
         "{} \n  {} \n  {}\n  \n",
         "Welcome to the CV generator".bold(),
@@ -64,7 +66,15 @@ fn main() {
     let mut colors_hex_codes: Vec<&str> = vec!["#007bff", "#FFEB3B", "#E53935"];
     let mut colors: Vec<&str> = vec![];
 
-    let mut ask_for_time_line_text: &str = "";
+    let mut time_line_ask_for_text: &str = "";
+    let mut time_line_types: Vec<&str> = vec![];
+    let mut time_line_types_ask_text: &str = "";
+    let mut time_line_titel_ask_text: &str = "";
+    let mut time_line_description_ask_text: &str = "";
+    let mut time_line_date_ask_text: &str = "";
+    let mut time_line_location_ask_text: &str = "";
+    let mut time_line_space_ask_test: &str = "";
+    let mut time_line_continue_ask_text: &str = "";
 
     if language_choice[language_select].eq("Deutsch") {
         skill_choice = vec!["Ja", "Nein"];
@@ -88,7 +98,15 @@ fn main() {
         color_select_text = "Waehle die Farbe deines Lebenslaufes";
         colors = vec!["Blau", "Gelb", "Rot"];
 
-        ask_for_time_line_text = "Willst du eine Timeline in deinem Lebenslauf?";
+        time_line_ask_for_text = "Willst du eine Timeline in deinem Lebenslauf?";
+        time_line_types = vec!["Wohnort", "Schule/ Uni", "Arbeit"];
+        time_line_types_ask_text = "Waehle den Type deines TimeStamp auf der Zeitachse:";
+        time_line_titel_ask_text = "Welchen Titel soll der TimeStamp haben?";
+        time_line_description_ask_text = "Welche Beschreibung soll der TimeStamp haben?";
+        time_line_date_ask_text = "Gib den Zeitraum oder das Datum deines TimeStamp als String an. Format kannst du waehlen:";
+        time_line_space_ask_test = "Soll zwischen den Timestamps platz sein?";
+        time_line_continue_ask_text = "Willst du einen weiteren TimeStamp hinzufuegen?";
+        time_line_location_ask_text = "Gib den Ort deines TimeStamp an: ";
     }
     if language_choice[language_select].eq("English") {
         skill_choice = vec!["yes", "no"];
@@ -113,7 +131,16 @@ fn main() {
 
         colors = vec!["Blue", "Yellow", "Red"];
 
-        ask_for_time_line_text = "Do you want a Timeline in your CV?";
+        time_line_ask_for_text = "Do you want a Timeline in your CV?";
+        time_line_types = vec!["Location", "School/ University", "Work"];
+        time_line_types_ask_text = "Select the type of your TimeStamp on the timeline:";
+        time_line_titel_ask_text = "What title should the timestamp have?";
+        time_line_description_ask_text = "What description should the TimeStamp have?";
+        time_line_date_ask_text =
+            "Enter the period or date of your timestamp as a string. You can choose the format:";
+        time_line_location_ask_text = "Please specify the location of your TimeStamp:";
+        time_line_space_ask_test = "Should there be space between the timestamps?";
+        time_line_continue_ask_text = "Do you want to add another timestamp?"
     }
     println!("\n");
 
@@ -132,6 +159,7 @@ fn main() {
 
     let selected_color: &str = colors.get(color_select).unwrap();
     print!("{}", selected_color);
+    println!("\n");
 
     /*
        Name
@@ -149,10 +177,12 @@ fn main() {
     io::stdin()
         .read_line(&mut second_name)
         .expect("Failed to read line");
+    println!("\n");
 
     /*
        Contact information
     */
+    println!("\n");
 
     println!("{}", contact_email_ask_text.bold());
 
@@ -300,26 +330,137 @@ fn main() {
             }
         }
     }
-    println!("{}", selected_languages.len());
 
     /*
        Timeline Generate
     */
+    println!("\n");
 
-    let language_select = Select::with_theme(&ColorfulTheme::default())
-        .with_prompt(ask_for_time_line_text)
+    let time_line_select = Select::with_theme(&ColorfulTheme::default())
+        .with_prompt(time_line_ask_for_text)
         .items(&skill_choice)
         .default(0)
         .interact()
         .unwrap();
 
-    let time_line = true_false_convert(skill_choice[language_select], &true_list, &false_list);
+    let time_line = true_false_convert(skill_choice[time_line_select], &true_list, &false_list);
+    let mut timepoints: Vec<TimePoint> = vec![];
 
-    if time_line {}
+    if time_line {
+        /*
+        Time Points
+         */
+        let mut time_points_loop = true;
+
+        while time_points_loop {
+            let time_point_type = Select::with_theme(&ColorfulTheme::default())
+                .with_prompt(time_line_types_ask_text)
+                .items(&time_line_types)
+                .default(0)
+                .interact()
+                .unwrap();
+
+            /*
+               titel
+            */
+            println!("\n");
+
+            println!("{}", time_line_titel_ask_text.bold());
+
+            let mut time_point_titel = String::new();
+            io::stdin()
+                .read_line(&mut time_point_titel)
+                .expect("Failed to read line");
+
+            /*
+                description
+            */
+            println!("\n");
+
+            println!("{}", time_line_description_ask_text.bold());
+
+            let mut time_point_description = String::new();
+            io::stdin()
+                .read_line(&mut time_point_description)
+                .expect("Failed to read line");
+
+            /*
+               date
+            */
+            println!("\n");
+
+            println!("{}", time_line_date_ask_text.bold());
+
+            let mut time_point_date = String::new();
+            io::stdin()
+                .read_line(&mut time_point_date)
+                .expect("Failed to read line");
+
+            /*
+               location
+            */
+            println!("\n");
+
+            println!("{}", time_line_location_ask_text.bold());
+
+            let mut time_point_location = String::new();
+            io::stdin()
+                .read_line(&mut time_point_location)
+                .expect("Failed to read line");
+
+            /*
+               space between
+            */
+            println!("\n");
+
+            let time_point_time_select = Select::with_theme(&ColorfulTheme::default())
+                .with_prompt(time_line_space_ask_test)
+                .items(&skill_choice)
+                .default(0)
+                .interact()
+                .unwrap();
+
+            let time_point_space = true_false_convert(
+                skill_choice[time_point_time_select],
+                &true_list,
+                &false_list,
+            );
+
+            /*
+               build Timepoint
+            */
+
+            let time_point: TimePoint = TimePoint::new(
+                time_point_type as i8,
+                time_point_titel,
+                time_point_description,
+                time_point_date,
+                time_point_location,
+                time_point_space,
+            );
+
+            timepoints.push(time_point.convert_type_to_svg());
+            
+            
+            println!("\n");
+            let time_line_add_continue = Select::with_theme(&ColorfulTheme::default())
+                .with_prompt(time_line_continue_ask_text)
+                .items(&skill_choice)
+                .default(0)
+                .interact()
+                .unwrap();
+
+            if (time_line_add_continue == 1) {
+                time_points_loop = false;
+            }
+        }
+    }
 
     /*
         Generate
     */
+    println!("\n");
+
     let color_index: usize = colors.iter().position(|x| *x == selected_color).unwrap();
 
     let selected_color_hex = colors_hex_codes.get(color_index).unwrap();
@@ -332,9 +473,10 @@ fn main() {
         skills: selected_skills_ob,
         languages: selected_languages,
         color: selected_color_hex,
+        time_stamps: timepoints,
     };
 
-    gen::generate(cv_data, time_line);
+    gen::generate(cv_data);
 
     // println!("Punkteverteilung:");
     // for (option, point) in SKILLS.iter().zip(SKILLS.iter()) {

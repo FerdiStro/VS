@@ -16,30 +16,10 @@ use std::io::Write;
 use colored::Colorize;
 use std::process::{Command, Stdio};
 use crate::merger::pdfMerger::merge_pdf;
+use crate::structures::cv::CV;
+use crate::structures::time_point::TimePoint;
 
-#[derive(Content)]
-pub struct Skill<'a> {
-    pub(crate) skill_name: &'a str,
-    pub(crate) rating: String,
-}
-
-#[derive(Content)]
-pub struct CV<'a> {
-    //Name
-    pub(crate) first_name: &'a str,
-    pub(crate) last_name: &'a str,
-    //Contact
-    pub(crate) phone_number: &'a str,
-    pub(crate) email_address: &'a str,
-    //programing skills
-    pub(crate) skills: Vec<Skill<'a>>,
-    //languages
-    pub(crate) languages: Vec<Skill<'a>>,
-
-    //color
-    pub(crate) color: &'a str,
-}
-pub fn generate(cv: CV, timeline: bool) {
+pub fn generate(cv: CV) {
     let mut html_file: String = "".to_owned();
 
     read(&mut html_file, "html_open").expect("TODO: panic message");
@@ -64,7 +44,7 @@ pub fn generate(cv: CV, timeline: bool) {
 
     build_cv_docker().expect("");
 
-    if !timeline {
+    if cv.time_stamps.is_empty() {
         return;
     }
 
