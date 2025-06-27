@@ -1,0 +1,86 @@
+<div style="display: flex">
+    <div class="box-big">
+        <p class="box-header">
+            Job Experience
+        </p>
+        <p class="box-content">
+            I have been developing video games since I was 12 years old, leading me to pursue a career as a software
+            developer. <br>
+            I started my apprenticeship at Infront-fiance on September 1st 2021 and will probably finish it by passing
+            the final exam at the beginning of June 2024. <br>
+            <br>
+            During this time, I have acquired extensive knowledge of microservices architecture and the associated cloud
+            infrastructure. <br>
+            Over the years, I have significantly expanded my Java expertise through both personal and professional
+            experiences. I handle Spring Boot applications on a daily basis, gaining substantial practical experience in
+            this area. <br>
+            <br>
+            Furthermore, I am familiar with frontend frameworks such as Angular and React Native through private and
+            company projects. In 2022, as part of my training, I successfully completed a one-week course in Angular for
+            frontend development. <br>
+            <br>
+            In vocational school and personal use, I have accumulated significant experience with microprocessors and
+            their programming. Prior to my training, I successfully completed my secondary school education in
+            Mathematics and Physics in 2021. <br>
+        </p>
+    </div>
+
+    <div class="box-small">
+        <p class="box-header">
+            Skills
+        </p>
+
+        <div class="box-content">
+            {{#skills}}
+                <div>
+                    <div class="point">
+                        -{{skill_name}}
+                    </div>
+                    <div class="value">
+                        {{&rating}}
+                    </div>
+                </div>
+            {{/skills}}
+
+        </div>
+
+
+    </div>
+</div>
+<div style="display: flex">
+    <div class="box-small">
+        <p class="box-header">
+            Speaking-Languages
+        </p>
+        <div class="box-content">
+            {{#languages}}
+                <div>
+                    <div class="point">
+                        -{{skill_name}}
+                    </div>
+                    <div class="value">
+                        {{&rating}}
+                    </div>
+                </div>
+            {{/languages}}
+        </div>
+    </div>
+
+
+    <div class="box-big">
+        <p class="box-header">
+            About Me
+        </p>
+        <p class="box-content">
+            I'm Ferdi, 18 years old, currently residing in the beautiful city of Würzburg. <br>
+            In my free time, I love playing handball and engaging in various other sports.<br><br>
+
+            Driven by a passion for software development, I am actively involved in numerous personal projects, which
+            has granted me a solid understanding of the field. <br>
+            As a programmer, I approach tasks with structured and solution-oriented thinking, while also placing a
+            strong emphasis on teamwork.
+        </p>
+    </div>
+
+
+</div>
