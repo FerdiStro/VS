@@ -1,1 +1,1 @@
-pub mod pdfMerger;
+pub mod pdf_merger;

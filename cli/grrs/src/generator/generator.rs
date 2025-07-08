@@ -1,4 +1,4 @@
-use ramhorns::{Content, Template};
+use ramhorns::Template;
 use same_file::Handle;
 use std::io::{BufRead, BufReader, Error, ErrorKind, Read};
 use std::path::Path;
@@ -15,11 +15,17 @@ use std::io::Write;
 
 use colored::Colorize;
 use std::process::{Command, Stdio};
-use crate::merger::pdfMerger::merge_pdf;
+use crate::merger::pdf_merger::merge_pdf;
 use crate::structures::cv::CV;
-use crate::structures::time_point::TimePoint;
 
 pub fn generate(cv: CV) {
+    println!(
+        "{} \n  {} \n  {}\n  \n",
+        "Welcome to the CV generator".bold(),
+        "Dependency Needed:",
+        "- docker-compose",
+    );
+    
     let mut html_file: String = "".to_owned();
 
     read(&mut html_file, "html_open").expect("TODO: panic message");
@@ -101,7 +107,7 @@ fn read(html_file: &mut String, path: &str) -> Result<(), Error> {
         let file = File::open(&html_open_path)?;
         let file = BufReader::new(file);
 
-        for (num, line) in file.lines().enumerate() {
+        for (_num, line) in file.lines().enumerate() {
             html_file.push_str(&*line?);
             html_file.push_str("\n");
         }
