@@ -280,7 +280,34 @@ fn main() {
     println!("\n\n");
 
     if true_false_convert(skill_choice[skill_select], &true_list, &false_list) {
-        let skills: Vec<&str> = vec!["Java", "C", "C++", "c#"];
+        let skills: Vec<&str> = vec![
+            "Java",
+            "C",
+            "Python",
+            "Rust",
+            "C++",
+            "c#",
+            "Type-Script",
+            "Java-Script",
+            "Gradle",
+            "Html/CSS",
+            "TailwindCss",
+            "Spring",
+            "Springboot",
+            "Angular",
+            "React-Native",
+            "Linux",
+            "Docker",
+            "Docker-Compose",
+            "Kubernetes",
+            "JFrog",
+            "Bitbucket-pipeline",
+            "Github Actions",
+            "Jenkins",
+            "Confluence",
+            "Jira",
+            "Miro"
+        ];
 
         let mut rating = vec![0; skills.len()];
 
@@ -440,8 +467,7 @@ fn main() {
             );
 
             timepoints.push(time_point.convert_type_to_svg());
-            
-            
+
             println!("\n");
             let time_line_add_continue = Select::with_theme(&ColorfulTheme::default())
                 .with_prompt(time_line_continue_ask_text)
