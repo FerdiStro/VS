@@ -10,7 +10,6 @@ if command -v docker-compose > /dev/null; then
   cp src/VC.html build-docker/build/input.html
   cp -r src/assets/ build-docker/build/
 
-
   cd build-docker/
 
   docker-compose up --build -d

@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   html-to-pdf:
     build:
@@ -12,7 +10,6 @@ services:
     environment:
       - ASSETS_SERVER_URL=http://server:8000/assets/
     stop_signal: SIGINT
-
 
   server:
     build:
