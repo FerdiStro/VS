@@ -10,10 +10,12 @@ use crate::structures::cv::CV;
 use clap::Parser;
 
 fn main() {
-    let cli_args = Cli::parse();
+    
+    
+    let mut cli_args = Cli::parse();
     let use_cli = cli_args.validate();
 
-    let cv_data: CV = if use_cli {
+    let cv_data: CV = if !use_cli {
         get_cv_manual()
     } else {
         cli_args.get_cv_out_of_args()

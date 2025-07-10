@@ -8,7 +8,7 @@ use std::io;
 
 use crate::structures::time_point::TimePoint;
 
-pub fn get_cv_manual<'a>() -> CV<'a> {
+pub fn get_cv_manual<'a>() -> CV {
     /*
         Language Choicer
     */
@@ -211,7 +211,7 @@ pub fn get_cv_manual<'a>() -> CV<'a> {
                         selected_skills.push(selection);
 
                         let skill: Skill = Skill {
-                            skill_name: selection,
+                            skill_name: selection.to_string(),
                             rating: "".to_string(),
                         };
                         selected_languages.push(skill);
@@ -237,7 +237,7 @@ pub fn get_cv_manual<'a>() -> CV<'a> {
                 .unwrap();
 
             if let Some(skill) = selected_languages.get_mut(i) {
-                skill.rating = format_rating(point);
+                skill.rating = Skill::format_rating(point);
             }
         }
     }
@@ -279,7 +279,7 @@ pub fn get_cv_manual<'a>() -> CV<'a> {
                         selected_skills.push(selection);
 
                         let skill: Skill = Skill {
-                            skill_name: selection,
+                            skill_name: selection.to_string(),
                             rating: "".to_string(),
                         };
 
@@ -306,7 +306,7 @@ pub fn get_cv_manual<'a>() -> CV<'a> {
                 .unwrap();
 
             if let Some(skill) = selected_skills_ob.get_mut(i) {
-                skill.rating = format_rating(point);
+                skill.rating = Skill::format_rating(point);
             }
         }
     }
@@ -456,11 +456,7 @@ pub fn get_cv_manual<'a>() -> CV<'a> {
     }
 }
 
-fn format_rating(rating: i32) -> String {
-    let filled = "<div class=\"rounded-circle-fill\"> </div>".repeat(rating as usize);
-    let empty = "<div class=\"rounded-circle-non-fill\"> </div>".repeat(5 - rating as usize);
-    format!("{}{}", filled, empty)
-}
+
 
 fn true_false_convert(message: &str, true_list: &Vec<&str>, false_list: &Vec<&str>) -> bool {
     if true_list.contains(&message) {
