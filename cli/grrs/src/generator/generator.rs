@@ -8,15 +8,12 @@ use std::fs::File;
 use std::io;
 use std::io::Write;
 
-
-
-
-
-
-use colored::Colorize;
-use std::process::{Command, Stdio};
 use crate::merger::pdf_merger::merge_pdf;
 use crate::structures::cv::CV;
+use colored::Colorize;
+use std::process::{Command, Stdio};
+
+
 
 pub fn generate(cv: CV) {
     println!(
@@ -25,7 +22,49 @@ pub fn generate(cv: CV) {
         "Dependency Needed:",
         "- docker-compose",
     );
-    
+
+    generate_cv(&cv);
+
+    if !cv.time_stamps.is_empty() {
+        generate_time_line(&cv)
+    }
+
+    if !cv.cover_letter.is_empty() {
+        generate_cover_letter(&cv);
+    }
+}
+
+fn generate_cover_letter(cv: &CV) {
+    let mut html_file: String = "".to_owned();
+    read(&mut html_file, "html_open").expect("TODO: panic message");
+    read(&mut html_file, "cover/css_style").expect("TODO: panic message");
+
+
+    read(&mut html_file, "cover/html_body_cover").expect("TODO: panic message");
+
+    read(&mut html_file, "html_body_close").expect("TODO: panic message");
+    read(&mut html_file, "html_footer").expect("TODO: panic message");
+    read(&mut html_file, "html_close").expect("TODO: panic message");
+
+    let tpl = Template::new(html_file).unwrap();
+    let rendered = tpl.render(&cv);
+
+    fs::rename("../../CV.pdf", "../../CV-finish.pdf").expect("TODO: panic message");
+
+
+    match write_to_file(rendered, "../../src/VC.html") {
+        Ok(_) => println!("File written successfully."),
+        Err(e) => eprintln!("Error writing to file: {}", e),
+    }
+
+    build_cv_docker().expect("");
+
+    fs::rename("../../VC.pdf", "../../Cover-Letter.pdf").expect("TODO: panic message");
+    fs::rename("../../CV-finish.pdf", "../../CV.pdf").expect("TODO: panic message");
+
+}
+
+fn generate_cv(cv: &CV) {
     let mut html_file: String = "".to_owned();
 
     read(&mut html_file, "html_open").expect("TODO: panic message");
@@ -49,12 +88,10 @@ pub fn generate(cv: CV) {
     }
 
     build_cv_docker().expect("");
+}
 
-    if cv.time_stamps.is_empty() {
-        return;
-    }
-
-    fs::rename("../../VC.pdf", "../../VC-page-1.pdf").expect("TODO: panic message");
+fn generate_time_line(cv: &CV) {
+    fs::rename("../../VC.pdf", "../../CV-page-1.pdf").expect("TODO: panic message");
 
     let mut time_line_html_file: String = "".to_owned();
 
@@ -81,14 +118,11 @@ pub fn generate(cv: CV) {
 
     build_cv_docker().expect("");
 
+    fs::rename("../../VC.pdf", "../../CV-page-2.pdf").expect("TODO: panic message");
 
-    fs::rename("../../VC.pdf", "../../VC-page-2.pdf").expect("TODO: panic message");
-
-
-    
-    merge_pdf("../../VC-page-1.pdf", "../../VC-page-2.pdf", "../../VC.pdf");
-
+    merge_pdf("../../CV-page-1.pdf", "../../CV-page-2.pdf", "../../CV.pdf");
 }
+
 
 fn read(html_file: &mut String, path: &str) -> Result<(), Error> {
     let stdout_handle = Handle::stdout()?;

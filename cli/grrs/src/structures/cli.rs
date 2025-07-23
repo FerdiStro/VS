@@ -12,9 +12,17 @@ use std::string::String;
     long_about = None
 )]
 pub struct Cli {
-    /// When set to true flags CLI flags mode active and more flags are needed
+    /// When set to true CLI flags mode active and more flags are needed
     #[arg(short, long, action = ArgAction::SetTrue)]
     pub cli: bool,
+
+    /// When a text for cover is there, it will automatically generate
+    #[arg(long)]
+    pub cover: Option<String>,
+
+    /// Job name            [Required when cover]
+    #[arg(long)]
+    pub job: Option<String>,
 
     /// Your first name     [Required when cli]
     #[arg(long)]
@@ -77,9 +85,18 @@ impl Cli {
                 eprintln!("Error: --email-address nee to be set when used cli only mode");
             }
 
+            if !self.cover.is_none() {
+                if  self.job.is_none() {
+                    validate = false;
+                    eprintln!("Error: --job nee to be set when cover is set");
+                }
+            }
+                
             if self.color.is_none() {
                 self.color = Some("#007bff".to_string());
             }
+            
+            
 
             if !validate {
                 eprintln!("Run--help for help ");
@@ -94,7 +111,7 @@ impl Cli {
         let skills: Vec<Skill> = Self::get_skill_list(self.skill.clone());
         let languages: Vec<Skill> = Self::get_skill_list(self.language.clone());
         let time_stamps: Vec<TimePoint> = Self::get_time_line_list(self.time_point.clone());
-
+        
         CV {
             first_name: self.first_name.clone().unwrap(),
             last_name: self.last_name.clone().unwrap(),
@@ -104,6 +121,8 @@ impl Cli {
             languages,
             time_stamps,
             color: self.color.clone().unwrap(),
+            cover_letter: self.cover.clone().unwrap_or(String::new()),
+            job: self.job.clone().unwrap_or(String::new()),
         }
     }
 
@@ -128,7 +147,6 @@ impl Cli {
         let mut date = String::new();
         let mut location = String::new();
         let mut space: bool = false;
- 
 
         for kv in s.split(',') {
             let mut parts = kv.splitn(2, '=');
@@ -153,20 +171,13 @@ impl Cli {
                             .parse::<bool>()
                             .expect("Can't convert type in timepoint flag"),
                     )
-                        .unwrap();
+                    .unwrap();
                 }
                 _ => {}
             }
         }
 
-        Ok(TimePoint::new(
-            type_,
-            titel,
-            description,
-            date,
-            location,
-            space,
-        ).convert_type_to_svg())
+        Ok(TimePoint::new(type_, titel, description, date, location, space).convert_type_to_svg())
     }
 
     /*
