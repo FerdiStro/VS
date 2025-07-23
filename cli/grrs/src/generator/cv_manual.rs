@@ -434,7 +434,7 @@ pub fn get_cv_manual<'a>() -> CV {
             }
         }
     }
-
+    
     /*
         Generate
     */
@@ -453,6 +453,8 @@ pub fn get_cv_manual<'a>() -> CV {
         languages: selected_languages,
         color: selected_color_hex.to_string(),
         time_stamps: timepoints,
+        cover_letter: String::new(),
+        job: String::new(),
     }
 }
 

@@ -17,6 +17,10 @@ pub struct CV {
     
     //timepoints
     pub(crate) time_stamps: Vec<TimePoint>,
+    
+    //cover letter
+    pub(crate) cover_letter: String,
+    pub(crate) job: String,
 
     //color
     pub(crate) color: String,
