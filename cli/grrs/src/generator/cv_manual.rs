@@ -434,7 +434,7 @@ pub fn get_cv_manual<'a>() -> CV {
             }
         }
     }
-    
+
     /*
         Generate
     */
@@ -449,16 +449,18 @@ pub fn get_cv_manual<'a>() -> CV {
         last_name: second_name.replace("\n", ""),
         phone_number: phone_nummer.replace("\n", ""),
         email_address: email_address.replace("\n", ""),
+        website: String::new(),
+        job_experience: String::new(),
+        about_me: String::new(),
         skills: selected_skills_ob,
         languages: selected_languages,
         color: selected_color_hex.to_string(),
         time_stamps: timepoints,
         cover_letter: String::new(),
+        cover_merged: true,
         job: String::new(),
     }
 }
-
-
 
 fn true_false_convert(message: &str, true_list: &Vec<&str>, false_list: &Vec<&str>) -> bool {
     if true_list.contains(&message) {

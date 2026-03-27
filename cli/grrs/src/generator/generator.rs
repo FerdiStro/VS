@@ -13,8 +13,6 @@ use crate::structures::cv::CV;
 use colored::Colorize;
 use std::process::{Command, Stdio};
 
-
-
 pub fn generate(cv: CV) {
     println!(
         "{} \n  {} \n  {}\n  \n",
@@ -39,7 +37,6 @@ fn generate_cover_letter(cv: &CV) {
     read(&mut html_file, "html_open").expect("TODO: panic message");
     read(&mut html_file, "cover/css_style").expect("TODO: panic message");
 
-
     read(&mut html_file, "cover/html_body_cover").expect("TODO: panic message");
 
     read(&mut html_file, "html_body_close").expect("TODO: panic message");
@@ -51,7 +48,6 @@ fn generate_cover_letter(cv: &CV) {
 
     fs::rename("../../CV.pdf", "../../CV-finish.pdf").expect("TODO: panic message");
 
-
     match write_to_file(rendered, "../../src/VC.html") {
         Ok(_) => println!("File written successfully."),
         Err(e) => eprintln!("Error writing to file: {}", e),
@@ -62,6 +58,10 @@ fn generate_cover_letter(cv: &CV) {
     fs::rename("../../VC.pdf", "../../Cover-Letter.pdf").expect("TODO: panic message");
     fs::rename("../../CV-finish.pdf", "../../CV.pdf").expect("TODO: panic message");
 
+    if cv.cover_merged {
+        merge_pdf("../../Cover-Letter.pdf", "../../CV.pdf", "../../CV1.pdf");
+        fs::rename("../../CV1.pdf", "../../CV.pdf").expect("TODO: panic message");
+    }
 }
 
 fn generate_cv(cv: &CV) {
@@ -122,7 +122,6 @@ fn generate_time_line(cv: &CV) {
 
     merge_pdf("../../CV-page-1.pdf", "../../CV-page-2.pdf", "../../CV.pdf");
 }
-
 
 fn read(html_file: &mut String, path: &str) -> Result<(), Error> {
     let stdout_handle = Handle::stdout()?;

@@ -1,7 +1,7 @@
-
 # 📄 CV-Generator
 
-This project helps you create a professional **CV**, **Timelines**, and **Cover Letters** tailored for your programming career. It's built with Rust and uses Docker Compose to generate beautiful PDFs.
+This project helps you create a professional **CV**, **Timelines**, and **Cover Letters** tailored for your programming
+career. It's built with Rust and uses Docker Compose to generate beautiful PDFs.
 
 ---
 
@@ -51,20 +51,23 @@ cargo run -- --cli -h
 
 ### 🧩 Available Flags
 
-| Flag                                                                                             | Description                                       |
-|--------------------------------------------------------------------------------------------------|---------------------------------------------------|
-| `--cli`                                                                                          | Enables CLI flag mode                             |
-| `--cover <text>`                                                                                 | Cover letter text (required for cover generation) |
-| `--job <name>`                                                                                   | Job title (required when using `--cover`)         |
-| `--first_name <name>`                                                                            | Your first name *(required with `--cli`)*         |
-| `--last_name <name>`                                                                             | Your last name *(required with `--cli`)*          |
-| `--phone_number <number>`                                                                        | Your phone number *(required with `--cli`)*       |
-| `--email_address <email>`                                                                        | Your email address *(required with `--cli`)*      |
-| `--skill "skill_name=Java,rating=5"`                                                             | Programming skill with rating (repeatable)        |
-| `--language "skill_name=English,rating=5"`                                                       | Language with rating (repeatable)                 |
-| `--color <hex>`                                                                                  | Accent color of the CV (default: `#007bff`)       |
-| `--time_point "type=1,title=Uni,description=Studium,date=2015-2020,location=Munich,space=false"` | Timeline entry (repeatable)                       |
-| `--debug`                                                                                        | Enables debug output                              |
+| Flag                                                                                             | Description                                                                                         |
+|--------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| `--cli`                                                                                          | Enables CLI flag mode                                                                               |
+| `--cover <text>`                                                                                 | Cover letter text (required for cover generation)                                                   |
+| `--cover-merged`                                                                                 | When Enable Coverletter is merged to the first site of the CV. On Default CoverLetter seperated PDF |
+| `--job <name>`                                                                                   | Job title (required when using `--cover`)                                                           |
+| `--first_name <name>`                                                                            | Your first name *(required with `--cli`)*                                                           |
+| `--last_name <name>`                                                                             | Your last name *(required with `--cli`)*                                                            |
+| `--phone_number <number>`                                                                        | Your phone number *(required with `--cli`)*                                                         |
+| `--email_address <email>`                                                                        | Your email address *(required with `--cli`)*                                                        |
+| `--website <website>`                                                                            | Your Website                                                                                        | 
+| `--job-experience <text>`                                                                        | Your Job Experience. Formated in HTML for better look *(required with `--cli`)*                     |
+| `--skill "skill_name=Java,rating=5"`                                                             | Programming skill with rating (repeatable)                                                          |
+| `--language "skill_name=English,rating=5"`                                                       | Language with rating (repeatable)                                                                   |
+| `--color <hex>`                                                                                  | Accent color of the CV (default: `#007bff`)                                                         |
+| `--time_point "type=1,title=Uni,description=Studium,date=2015-2020,location=Munich,space=false"` | Timeline entry (repeatable)                                                                         |
+| `--debug`                                                                                        | Enables debug output                                                                                |
 
 📌 Full example:
 See [`doc/genereatCV.sh`](doc/genereatCV.sh)

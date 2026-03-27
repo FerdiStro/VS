@@ -22,8 +22,8 @@ cargo run -- --cli  \
 --time-point "type=2,title=Infront Financial Technology GmbH,description=Full-stack developer. Main focus on Spring cloud development,date=02.06.2024 - 01.10.2025,location=Frankfurt,space=true" \
 --time-point "type=0,title=CityY,description=Move to CityY,date=01.05.2025,location=CityY,space=true" \
 --time-point "type=2,title=Future Company GmbH,description=Senior Software Engineer ,date=01.05.2025,location=CityY,space=false" \
-
-
+--job "test" \
+--cover "Das ist ein cover"
 
 
 

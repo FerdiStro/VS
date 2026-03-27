@@ -20,6 +20,10 @@ pub struct Cli {
     #[arg(long)]
     pub cover: Option<String>,
 
+    /// When a text for cover is there, it will automatically generate
+    #[arg(long, action = ArgAction::SetTrue)]
+    pub cover_merged: bool,
+
     /// Job name            [Required when cover]
     #[arg(long)]
     pub job: Option<String>,
@@ -39,6 +43,18 @@ pub struct Cli {
     /// Your E-Mail         [Required when cli]
     #[arg(long)]
     pub email_address: Option<String>,
+
+    // Your Website
+    #[arg(long)]
+    pub website: Option<String>,
+
+    /// Your Job experience        [Required when cli]
+    #[arg(long)]
+    pub job_experience: Option<String>,
+
+    /// Your about me section [Required when cli]
+    #[arg(long)]
+    pub about_me: Option<String>,
 
     /// Programming Skills as a list. Add ass many skills as you like via a flag: --skill "skill_name=Java,rating=5"
     #[arg(long)]
@@ -67,39 +83,47 @@ impl Cli {
 
             if self.first_name.is_none() {
                 validate = false;
-                eprintln!("Error: --first-name nee to be set when used cli only mode");
+                eprintln!("Error: --first-name need to be set when used cli only mode");
             }
             if self.last_name.is_none() {
                 validate = false;
 
-                eprintln!("Error: --last-name nee to be set when used cli only mode");
+                eprintln!("Error: --last-name need to be set when used cli only mode");
             }
             if self.phone_number.is_none() {
                 validate = false;
 
-                eprintln!("Error: --phone-number nee to be set when used cli only mode");
+                eprintln!("Error: --phone-number need to be set when used cli only mode");
             }
             if self.email_address.is_none() {
                 validate = false;
 
-                eprintln!("Error: --email-address nee to be set when used cli only mode");
+                eprintln!("Error: --email-address need to be set when used cli only mode");
+            }
+
+            if self.job_experience.is_none() {
+                validate = false;
+                eprintln!("Error: --job-experience need to be set when used cli only mode");
+            }
+
+            if self.about_me.is_none() {
+                validate = false;
+                eprintln!("Error: --about-me need to be set when used cli only mode");
             }
 
             if !self.cover.is_none() {
-                if  self.job.is_none() {
+                if self.job.is_none() {
                     validate = false;
-                    eprintln!("Error: --job nee to be set when cover is set");
+                    eprintln!("Error: --job need to be set when cover is set");
                 }
             }
-                
+
             if self.color.is_none() {
                 self.color = Some("#007bff".to_string());
             }
-            
-            
 
             if !validate {
-                eprintln!("Run--help for help ");
+                eprintln!("Run --help for help ");
                 std::process::exit(1);
             }
             return true;
@@ -111,17 +135,21 @@ impl Cli {
         let skills: Vec<Skill> = Self::get_skill_list(self.skill.clone());
         let languages: Vec<Skill> = Self::get_skill_list(self.language.clone());
         let time_stamps: Vec<TimePoint> = Self::get_time_line_list(self.time_point.clone());
-        
+
         CV {
             first_name: self.first_name.clone().unwrap(),
             last_name: self.last_name.clone().unwrap(),
             phone_number: self.phone_number.clone().unwrap(),
             email_address: self.email_address.clone().unwrap(),
+            website: self.website.clone().unwrap(),
+            job_experience: self.job_experience.clone().unwrap(),
+            about_me: self.about_me.clone().unwrap(),
             skills,
             languages,
             time_stamps,
             color: self.color.clone().unwrap(),
             cover_letter: self.cover.clone().unwrap_or(String::new()),
+            cover_merged: self.cover_merged,
             job: self.job.clone().unwrap_or(String::new()),
         }
     }
