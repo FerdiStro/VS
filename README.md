@@ -5,7 +5,7 @@ career. It's built with Rust and uses Docker Compose to generate beautiful PDFs.
 
 ---
 
-## 🚀 Prerequisites
+## Prerequisites
 
 Before you begin, make sure the following are installed:
 
@@ -17,7 +17,7 @@ Before you begin, make sure the following are installed:
 
 ---
 
-## 🛠️ Getting Started
+## Getting Started
 
 ### Option 1: Interactive CLI (Recommended)
 
@@ -49,7 +49,7 @@ cargo run -- --cli -h
 
 ---
 
-### 🧩 Available Flags
+### Available Flags
 
 | Flag                                                                                             | Description                                                                                         |
 |--------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
@@ -87,7 +87,7 @@ See [`doc/genereatCV.sh`](doc/genereatCV.sh)
 
 ---
 
-## 📝 Todo
+## Todo
 
 * [ ] Add manual cover letter generator (`cv_manual.rs`)
 * [ ] Improve text formatting
