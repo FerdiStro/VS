@@ -1,3 +1,4 @@
+use crate::structures::cli::Lang;
 use crate::structures::skill::Skill;
 use crate::structures::time_point::TimePoint;
 use ramhorns::Content;
@@ -31,4 +32,8 @@ pub struct CV {
 
     //color
     pub(crate) color: String,
+
+    //language
+    pub(crate) de: bool,
+    pub(crate) en: bool,
 }

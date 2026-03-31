@@ -28,7 +28,17 @@ pub fn generate(cv: CV) {
     }
 
     if !cv.cover_letter.is_empty() {
-        generate_cover_letter(&cv);
+        generate_cover_letter(&cv)
+    }
+    clean_build_pdfs(&cv)
+}
+
+fn clean_build_pdfs(cv: &CV) {
+    fs::remove_file("../../CV-page-1.pdf").expect("TODO: panic message");
+    fs::remove_file("../../CV-page-2.pdf").expect("TODO: panic message");
+
+    if cv.cover_merged {
+        fs::remove_file("../../Cover-Letter.pdf").expect("TODO: panic message");
     }
 }
 

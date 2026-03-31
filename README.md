@@ -67,6 +67,7 @@ cargo run -- --cli -h
 | `--language "skill_name=English,rating=5"`                                                       | Language with rating (repeatable)                                                                   |
 | `--color <hex>`                                                                                  | Accent color of the CV (default: `#007bff`)                                                         |
 | `--time_point "type=1,title=Uni,description=Studium,date=2015-2020,location=Munich,space=false"` | Timeline entry (repeatable)                                                                         |
+| `--lang<de or en>`                                                                               | Language (default: `en`)                                                                            | Timeline entry (repeatable)                                                                         |
 | `--debug`                                                                                        | Enables debug output                                                                                |
 
 📌 Full example:

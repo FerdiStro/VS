@@ -11,7 +11,13 @@
         <br>
         <br>
         <br>
-        <b>Bewerbung als {{job}}</b>
+
+        {{#de}}
+            <b>Bewerbung als {{job}}</b>
+        {{/de}}
+        {{#en}}
+            <b>Application as {{job}}</b>
+        {{/en}}
         <br>
         <br>
 
@@ -19,7 +25,16 @@
             {{{cover_letter}}}
 
             <br><br>
-            Mit freundlichen Grüßen <br><br><br>
+
+            {{#de}}
+                Mit freundlichen Grüßen
+            {{/de}}
+            {{#en}}
+                Best regards,
+            {{/en}}
+
+            <br><br><br>
+
             {{first_name}} {{last_name}}
         </div>
 

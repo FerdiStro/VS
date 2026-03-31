@@ -1,12 +1,12 @@
+use crate::structures::cli::Lang;
 use crate::structures::cv::CV;
 use crate::structures::skill::Skill;
+use crate::structures::time_point::TimePoint;
 use colored::Colorize;
 use dialoguer::theme::ColorfulTheme;
 use dialoguer::{Input, Select};
 use inquire::MultiSelect;
 use std::io;
-
-use crate::structures::time_point::TimePoint;
 
 pub fn get_cv_manual<'a>() -> CV {
     /*
@@ -459,6 +459,8 @@ pub fn get_cv_manual<'a>() -> CV {
         cover_letter: String::new(),
         cover_merged: true,
         job: String::new(),
+        en: true,
+        de: false
     }
 }
 

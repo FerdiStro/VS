@@ -1,8 +1,14 @@
 use crate::structures::cv::CV;
 use crate::structures::skill::Skill;
 use crate::structures::time_point::TimePoint;
-use clap::{ArgAction, Parser};
+use clap::{ArgAction, Parser, ValueEnum};
 use std::string::String;
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq,  ValueEnum)]
+pub enum Lang {
+    DE,
+    EN,
+}
 
 #[derive(Parser, Debug)]
 #[command(
@@ -71,6 +77,10 @@ pub struct Cli {
     /// Timeline only set when you want to generate a second page with timeline. Add ass many timepoints as you like via flag: --time_point "type=1,title=Uni,description=Studium,date=2015-2020,location=München,space=false"
     #[arg(long)]
     pub time_point: Vec<String>,
+
+    /// activate Debug
+    #[arg(short, long, value_enum, default_value_t = Lang::EN)]
+    pub lang: Lang,
 
     /// activate Debug
     #[arg(short, long, action = ArgAction::SetTrue)]
@@ -151,6 +161,8 @@ impl Cli {
             cover_letter: self.cover.clone().unwrap_or(String::new()),
             cover_merged: self.cover_merged,
             job: self.job.clone().unwrap_or(String::new()),
+            de: matches!(self.lang, Lang::DE),
+            en: matches!(self.lang, Lang::EN),
         }
     }
 
