@@ -1,4 +1,3 @@
-use crate::structures::cli::Lang;
 use crate::structures::skill::Skill;
 use crate::structures::time_point::TimePoint;
 use ramhorns::Content;

@@ -1,5 +1,5 @@
 #Navigate to Cargo
-cd ../cli/grrs/
+cd ../src/cli/
 # CLI-Command
 cargo run -- --cli  \
 --first-name FirstName --last-name LastName \

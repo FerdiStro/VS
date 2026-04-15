@@ -1,4 +1,3 @@
-use crate::structures::cli::Lang;
 use crate::structures::cv::CV;
 use crate::structures::skill::Skill;
 use crate::structures::time_point::TimePoint;
@@ -260,7 +259,34 @@ pub fn get_cv_manual<'a>() -> CV {
     println!("\n\n");
 
     if true_false_convert(skill_choice[skill_select], &true_list, &false_list) {
-        let skills: Vec<&str> = vec!["Java", "C", "C++", "c#"];
+        let skills: Vec<&str> = vec![
+            "Java",
+            "C",
+            "Python",
+            "Rust",
+            "C++",
+            "c#",
+            "Type-Script",
+            "Java-Script",
+            "Gradle",
+            "Html/CSS",
+            "TailwindCss",
+            "Spring",
+            "Springboot",
+            "Angular",
+            "React-Native",
+            "Linux",
+            "Docker",
+            "Docker-Compose",
+            "Kubernetes",
+            "JFrog",
+            "Bitbucket-pipeline",
+            "Github Actions",
+            "Jenkins",
+            "Confluence",
+            "Jira",
+            "Miro"
+        ];
 
         // let rating = vec![0; skills.len()];
 

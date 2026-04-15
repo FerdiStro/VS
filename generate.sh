@@ -7,8 +7,9 @@ if command -v docker-compose > /dev/null; then
   mkdir -p build-docker/output
 
 
-  cp src/VC.html build-docker/build/input.html
-  cp -r src/assets/ build-docker/build/
+  cp src/CV.html build-docker/build/input.html
+#  user for images, removed and maybe rework in the future
+#  cp -r src/assets/ build-docker/build/
 
   cd build-docker/
 
@@ -26,7 +27,7 @@ if command -v docker-compose > /dev/null; then
   if docker-compose logs | grep -q "Docker Compose build failed"; then
     echo "Docker Compose build failed. Exiting without cleanup."
   else
-    cp output/output.pdf ../VC.pdf
+    cp output/output.pdf ../CV.pdf
     rm -rf build/
     rm -rf output/
     echo "Clean up completed."

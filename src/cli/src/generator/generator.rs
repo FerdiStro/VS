@@ -58,14 +58,14 @@ fn generate_cover_letter(cv: &CV) {
 
     fs::rename("../../CV.pdf", "../../CV-finish.pdf").expect("TODO: panic message");
 
-    match write_to_file(rendered, "../../src/VC.html") {
+    match write_to_file(rendered, "../../src/CV.html") {
         Ok(_) => println!("File written successfully."),
         Err(e) => eprintln!("Error writing to file: {}", e),
     }
 
     build_cv_docker().expect("");
 
-    fs::rename("../../VC.pdf", "../../Cover-Letter.pdf").expect("TODO: panic message");
+    fs::rename("../../CV.pdf", "../../Cover-Letter.pdf").expect("TODO: panic message");
     fs::rename("../../CV-finish.pdf", "../../CV.pdf").expect("TODO: panic message");
 
     if cv.cover_merged {
@@ -92,7 +92,7 @@ fn generate_cv(cv: &CV) {
     let tpl = Template::new(html_file).unwrap();
     let rendered = tpl.render(&cv);
 
-    match write_to_file(rendered, "../../src/VC.html") {
+    match write_to_file(rendered, "../../src/CV.html") {
         Ok(_) => println!("File written successfully."),
         Err(e) => eprintln!("Error writing to file: {}", e),
     }
@@ -101,7 +101,7 @@ fn generate_cv(cv: &CV) {
 }
 
 fn generate_time_line(cv: &CV) {
-    fs::rename("../../VC.pdf", "../../CV-page-1.pdf").expect("TODO: panic message");
+    fs::rename("../../CV.pdf", "../../CV-page-1.pdf").expect("TODO: panic message");
 
     let mut time_line_html_file: String = "".to_owned();
 
@@ -121,14 +121,14 @@ fn generate_time_line(cv: &CV) {
     let tpl = Template::new(time_line_html_file).unwrap();
     let rendered = tpl.render(&cv);
 
-    match write_to_file(rendered, "../../src/VC.html") {
+    match write_to_file(rendered, "../../src/CV.html") {
         Ok(_) => println!("File written successfully."),
         Err(e) => eprintln!("Error writing to file: {}", e),
     }
 
     build_cv_docker().expect("");
 
-    fs::rename("../../VC.pdf", "../../CV-page-2.pdf").expect("TODO: panic message");
+    fs::rename("../../CV.pdf", "../../CV-page-2.pdf").expect("TODO: panic message");
 
     merge_pdf("../../CV-page-1.pdf", "../../CV-page-2.pdf", "../../CV.pdf");
 }

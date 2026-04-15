@@ -26,7 +26,7 @@ Before you begin, make sure the following are installed:
 3. Run the interactive CLI:
 
 ```bash
-cargo run --package grrs --bin grrs
+cargo run --package cli --bin cli
 ````
 
 After entering your information, Docker Compose will generate your CV. The result is a `VC.pdf` file.
