@@ -1,8 +1,14 @@
+pub mod application_handler;
+
 use http_body_util::combinators::BoxBody;
 use http_body_util::{BodyExt, Empty, Full};
 use hyper::body::{Body, Bytes, Frame, Incoming};
 use hyper::{Request, Response, StatusCode};
 
+
+//pub fn get_applications() -> Response<BoxBody<Bytes, hyper::Error>> {
+  //  DbConnection
+//}
 
 //Return "Hello World" on GET
 pub fn test_hello(_: Request<Incoming>) -> Response<BoxBody<Bytes, hyper::Error>> {

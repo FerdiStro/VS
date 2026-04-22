@@ -1,4 +1,6 @@
 use hyper::{Request, body::Incoming};
+use spacetimedb_sdk::__codegen::log;
+use spacetimedb_sdk::__codegen::log::log;
 use tower::Service;
 
 #[derive(Debug, Clone)]
@@ -29,7 +31,7 @@ where
     }
 
     fn call(&mut self, req: Req) -> Self::Future {
-        println!("processing request: {} {}", req.method(), req.uri().path());
+        log::info!("processing request: {} {}", req.method(), req.uri().path());
         self.inner.call(req)
     }
 }
