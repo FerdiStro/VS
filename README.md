@@ -1,3 +1,5 @@
+*Note:* The code here is 100% human-written. AI is only used for docs and research.
+
 # 📄 CV-Generator
 
 This project helps you create a professional **CV**, **Timelines**, and **Cover Letters** tailored for your programming
