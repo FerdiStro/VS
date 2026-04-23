@@ -9,7 +9,7 @@ All URIs are relative to *http://localhost*
 
 <a name="applicationGet"></a>
 # **applicationGet**
-> applicationGet(userId)
+> applicationGet(rust\_query\_object)
 
 
 
@@ -19,7 +19,7 @@ All URIs are relative to *http://localhost*
 
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **userId** | **String**|  | [optional] [default to null] |
+| **rust\_query\_object** | [**get_application_query_parameters**](../Models/.md)|  | [optional] [default to null] |
 
 ### Return type
 

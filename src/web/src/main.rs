@@ -2,7 +2,9 @@ mod handler;
 mod logger;
 mod module_bindings;
 
-use crate::handler::application_handler::create_application;
+pub mod models;
+
+use crate::handler::application_handler::{create_application, get_application};
 use http_body_util::combinators::BoxBody;
 use http_body_util::BodyExt;
 use hyper::{body::Bytes, server::conn::http1, Method, Request, Response, StatusCode};
@@ -23,7 +25,7 @@ async fn router(
         (&Method::POST, "/test") => Ok(handler::test_echo_strem(req)),
         (&Method::PUT, "/test") => Ok(handler::test_echo_await(req).await),
         (&Method::POST, "/application") => Ok(create_application(req)),
-        (&Method::GET, "/application") => Ok(handler::test_echo_await(req).await),
+        (&Method::GET, "/application") => Ok(get_application(req)),
         (&Method::GET, "/applicationS") => Ok(handler::test_echo_await(req).await),
 
         _ => Ok(handler::empty_response(StatusCode::NOT_FOUND)),

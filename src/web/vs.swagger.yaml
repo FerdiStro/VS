@@ -10,9 +10,41 @@ paths:
       description: "GET existing application with Id"
       parameters:
         - in: query
-          name: userId
+          name: rust_query_object
+          explode: true
           schema:
-            type: string
+            $ref: "#/components/schemas/get_application_query_parameters"
       responses:
         "200":
-          description: "Success"
+          $ref: "#/components/schemas/applicationGetResponse"
+
+components:
+  schemas:
+
+
+    get_application_query_parameters:
+      type: object
+      description: rust struct for parsing query parameters
+      properties:
+        applicationId:
+          type: string
+
+
+    application:
+      type: object
+      description: Application object
+      properties:
+        id:
+          type: string
+          description: applicationId
+
+    applicationGetResponse:
+      type: object
+      description: Get application by Id
+      properties: #        application:
+        #          $ref: "#/components/schemas/application"
+        test:
+          type: string
+
+
+

@@ -11,4 +11,5 @@ http-body-util = "0.1"
 hyper-util = { version = "0.1", features = ["full"] }
 tower = { version = "0.5.3", features = ["full"] }
 spacetimedb-sdk = "2.1.0"
-
+serde = { version = "1.0", features = ["derive"] }
+serde_urlencoded = "0.7"

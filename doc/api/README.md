@@ -13,6 +13,9 @@ All URIs are relative to *http://localhost*
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
+ - [application](./Models/application.md)
+ - [applicationGetResponse](./Models/applicationGetResponse.md)
+ - [get_application_query_parameters](./Models/get_application_query_parameters.md)
 
 
 <a name="documentation-for-authorization"></a>

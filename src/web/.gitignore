@@ -1,2 +1,5 @@
-/generated-api
+/generated-api/src/models
+/generated-api/docs/
+/src/models/
 /src/module_bindings/
+

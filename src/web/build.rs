@@ -1,3 +1,5 @@
+use std::fs;
+use std::path::Path;
 use std::process::Command;
 
 fn main() {
@@ -11,8 +13,8 @@ fn main() {
             "vs.swagger.yaml",
             "-g",
             "rust",
-            "-o",
-            "./generated-api",
+            // "-o",
+            // "/models",
             "--global-property",
             "models",
             "--skip-validate-spec",
@@ -24,6 +26,28 @@ fn main() {
         panic!("Generation failed");
     }
     println!("generate markdown openapi-documentation ");
+
+    let models_dir = Path::new("src/models");
+    let mod_rs_path = models_dir.join("mod.rs");
+
+    let mut mod_rs_content = String::from("// Generated in build.rs\n");
+
+    if let Ok(entries) = fs::read_dir(models_dir) {
+        for entry in entries.flatten() {
+            let path = entry.path();
+
+            if path.extension().and_then(|s| s.to_str()) == Some("rs") {
+                if let Some(file_stem) = path.file_stem().and_then(|s| s.to_str()) {
+                    if file_stem != "mod" {
+                        mod_rs_content.push_str(&format!("pub mod {};\n", file_stem));
+                        mod_rs_content.push_str(&format!("pub use {}::*;\n\n", file_stem));
+                    }
+                }
+            }
+        }
+    }
+    fs::write(mod_rs_path, mod_rs_content).expect("Can't write mod.rs");
+
 
     let status = Command::new("npx")
         .args([
@@ -52,7 +76,7 @@ fn main() {
             "--lang",
             "rust",
             "--out-dir",
-            "src/moudle_bindings",
+            "src/module_bindings",
             "--module-path",
             "spacetimedb/",
         ])
